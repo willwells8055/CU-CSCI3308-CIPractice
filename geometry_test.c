@@ -145,6 +145,41 @@ START_TEST(test_2d_midpoint)
 }
 END_TEST
 
+/* coord_2d_area_triangle Test */
+START_TEST(test_2d_area_triangle)
+{
+    coord_2d_t a;
+    coord_2d_t b;
+    coord_2d_t c;
+    /* should be 0 b/c all at origin*/
+    a.x = 0;
+    a.y = 0;
+    b.x = 0;
+    b.y = 0;
+    c.x = 0;
+    c.y = 0;
+    ck_assert(coord_2d_area_triangle(&a, &b, &c) == 0.0);
+
+    /* should be 0 b/c all on a line*/
+    a.x = 0;
+    a.y = -3;
+    b.x = 1.5;
+    b.y = 0;
+    c.x = 5;
+    c.y = 7;
+    ck_assert(coord_2d_area_triangle(&a, &b, &c) == 0.0);
+
+    /*should not be zero b/c is a triangle */
+    a.x = 36;
+    a.y = 12;
+    b.x = 14;
+    b.y = 38;
+    c.x = 52;
+    c.y = 41;
+    ck_assert(coord_2d_area_triangle(&a, &b, &c) == 527.00);
+}
+END_TEST
+
 /* coord_2d Test Suite */
 Suite* coord_2d_suite(void)
 {

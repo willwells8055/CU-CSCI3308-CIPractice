@@ -37,7 +37,23 @@ double coord_2d_dist(const coord_2d_t* a, const coord_2d_t* b){
 }
 
 double coord_2d_area_triangle(const coord_2d_t* a, const coord_2d_t* b, const coord_2d_t* c){
-    
+        if (!a)
+    {
+        DEBUG(__FILE__, __LINE__, __func__, "'a' cannot be NULL");
+        return -1;
+    }
+    if (!b)
+    {
+        DEBUG(__FILE__, __LINE__, __func__, "'b' cannot be NULL");
+        return -1;
+    }
+    if (!c)
+    {
+        DEBUG(__FILE__, __LINE__, __func__, "'c' cannot be NULL");
+        return -1;
+    }
+    double tri = (a->x * (b->y - c->y)) + (b->x * (c->y - a->y)) + (c->x * (a->y - b->y));
+    return (fabs(tri / 2.0));
 }
 
 
